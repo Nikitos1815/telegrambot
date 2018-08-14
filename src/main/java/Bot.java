@@ -2,9 +2,17 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import java.util.*;
 import java.lang.*;
 
+
+
+
+
 public class Bot extends TelegramLongPollingBot {
+    private String username;
+    private long id;
+
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -13,6 +21,9 @@ public class Bot extends TelegramLongPollingBot {
             // Set variables
             String message_text = update.getMessage().getText();
             long chat_id = update.getMessage().getChatId();
+            username = update.getMessage().getChat().getUserName();
+            id = update.getMessage().getChat().getId();
+            UserDB.Registration(username,id);
 
             SendMessage message = new SendMessage() // Create a message object object
                     .setChatId(chat_id)
@@ -22,6 +33,7 @@ public class Bot extends TelegramLongPollingBot {
             } catch (TelegramApiException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
@@ -29,7 +41,7 @@ public class Bot extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
         // Return bot username
-        // If bot username is @MyAmazingBot, it must return 'MyAmazingBot'
+        // If bot username is @MyAmazingBot, it must return 'proswimbot'
         return "proswimbot";
     }
 
@@ -38,4 +50,8 @@ public class Bot extends TelegramLongPollingBot {
         // Return bot token from BotFather
         return "624724125:AAEZKWtsxN5AJUhXxg6AEIqpjWxopKCo268";
     }
+
+  /*  public void Userreg(Update update){
+        UserDB.Registration(username,id);
+    }*/
 }
