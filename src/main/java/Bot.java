@@ -23,7 +23,8 @@ public class Bot extends TelegramLongPollingBot {
             long chat_id = update.getMessage().getChatId();
             username = update.getMessage().getChat().getUserName();
             id = update.getMessage().getChat().getId();
-            UserDB.Registration(username,id);
+            UserDB reg = new UserDB();
+            reg.Registration(username,id);
 
             SendMessage message = new SendMessage() // Create a message object object
                     .setChatId(chat_id)
