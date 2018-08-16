@@ -3,8 +3,11 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
 import java.lang.*;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class UserDB {
 
@@ -16,10 +19,8 @@ public class UserDB {
     public  void Registration(String username, long useRid){
         try{
             MongoCollection<org.bson.Document> collec = db.getCollection("userlist");
-            FindIterable<org.bson.Document> check = collec.find(new org.bson.Document().append("Id:", useRid));
-
-            MongoCursor<org.bson.Document> cursor = check.iterator();
-            if(check == null){
+            org.bson.Document doublecheck = collec.find(eq("Id:", useRid)).first();
+            if(doublecheck == null){
             org.bson.Document doc = new org.bson.Document()
                     .append("Name:",username).append("Id:", useRid);
             collec.insertOne(doc);

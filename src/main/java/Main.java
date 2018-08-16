@@ -16,6 +16,8 @@ public class Main {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+        //TODO connect to DB
+
     }
 }
 
