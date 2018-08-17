@@ -12,7 +12,7 @@ import java.lang.*;
 public class Bot extends TelegramLongPollingBot {
     private String username;
     private long id;
-
+    public UserDB reg = new UserDB();
     @Override
     public void onUpdateReceived(Update update) {
 
@@ -23,7 +23,7 @@ public class Bot extends TelegramLongPollingBot {
             long chat_id = update.getMessage().getChatId();
             username = update.getMessage().getChat().getUserName();
             id = update.getMessage().getChat().getId();
-            UserDB reg = new UserDB();
+           // UserDB reg = new UserDB();
             reg.Registration(username,id);
 
             SendMessage message = new SendMessage() // Create a message object object
@@ -51,8 +51,4 @@ public class Bot extends TelegramLongPollingBot {
         // Return bot token from BotFather
         return "624724125:AAEZKWtsxN5AJUhXxg6AEIqpjWxopKCo268";
     }
-
-  /*  public void Userreg(Update update){
-        UserDB.Registration(username,id);
-    }*/
 }

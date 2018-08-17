@@ -3,6 +3,7 @@ import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import java.lang.*;
 public class Main {
+
     public static void main(String[] args) {
         // TODO Initialize Api Context
         ApiContextInitializer.init();
@@ -16,7 +17,6 @@ public class Main {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-        //TODO connect to DB
 
     }
 }

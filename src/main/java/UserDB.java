@@ -1,18 +1,19 @@
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
 import java.lang.*;
 
 import static com.mongodb.client.model.Filters.eq;
 
 public class UserDB {
 
-    protected  MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-    protected MongoDatabase db = mongoClient.getDatabase("userdb");
+    protected  MongoClient mongoClient;
+    protected MongoDatabase db;
+    public UserDB(){
+        mongoClient = new MongoClient( "localhost" , 27017 );
+        db = mongoClient.getDatabase("userdb");
+    }
 
 
 
